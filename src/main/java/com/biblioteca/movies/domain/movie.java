@@ -14,4 +14,6 @@ public class movie {
 
     @Id
     private String id;
+
+    private String name;
 }
