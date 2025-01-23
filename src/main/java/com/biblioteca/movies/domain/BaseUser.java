@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 public class BaseUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    protected Long id;
 
     @Column(nullable = false)
-    private String email;
+    protected String email;
     
     @Column(nullable = false)
-    private String password;
+    protected String password;
     
     @Column(nullable = false)
-    private String name;
+    protected String name;
 }
