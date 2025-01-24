@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.biblioteca.movies.domain.User;
 import com.biblioteca.movies.dtos.UserDTO;
 import com.biblioteca.movies.dtos.UserViewDTO;
 import com.biblioteca.movies.services.contracts.UserService;
