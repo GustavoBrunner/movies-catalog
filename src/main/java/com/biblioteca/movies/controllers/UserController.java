@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
-@RequestMapping("/api/developer")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService service;
@@ -34,8 +34,8 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<User>> getAll() {
-        List<User> developers = service.findAll();
+    public ResponseEntity<List<UserViewDTO>> getAll() {
+        List<UserViewDTO> developers = service.findAll();
         if(developers.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -50,9 +50,7 @@ public class UserController {
         }
 
         UserViewDTO entity = service.findById(id);
-        if(entity.equals(null)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        
 
         return new ResponseEntity<>(entity, HttpStatus.OK);
     }

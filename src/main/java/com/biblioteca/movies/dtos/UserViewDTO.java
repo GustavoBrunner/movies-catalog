@@ -1,5 +1,5 @@
 package com.biblioteca.movies.dtos;
 
-public record UserViewDTO(String name, String email) {
+import com.biblioteca.movies.domain.UserType;
 
-}
+public record UserViewDTO(String userName, String email, Integer movieQtd, UserType userType) { }
