@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.biblioteca.movies.domain.User;
 
 public interface UserRespository extends JpaRepository <User, Long> {
-    public Optional<User> findDeveloperByEmail(String email);
+    public Optional<User> findUserByEmail(String email);
 }
