@@ -1,12 +1,10 @@
-CREATE TABLE user(
+CREATE TABLE USER (
+    id_user int auto_increment PRIMARY KEY,
     movie_qtd int,
-    password varchar(200),
-    username varchar(50),
-    token varchar(20),
-    email varchar(100),
-    token_datetime datetime,
-    function enum('client', 'dev'),
-    id_user int auto_increment PRIMARY KEY
-    UNIQUE(username)
+    password varchar(200) not null,
+    username varchar(50) not null,
+    token varchar(20) not null,
+    email varchar(100) not null,
+    token_datetime datetime not null,
+    function enum('client', 'dev') not null
 );
-
