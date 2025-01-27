@@ -1,7 +1,8 @@
 package com.biblioteca.movies.services.contracts;
 
 import java.util.List;
-import com.biblioteca.movies.util.contracts.DtoMapper;
+import java.util.Optional;
+
 
 
 public interface GenericService<T, T1,T2> {
