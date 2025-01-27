@@ -13,7 +13,7 @@ public class FeignClientConfig {
     private String apiKey;
 
     @Bean
-    public RequestInterceptor requestInterceptor(){
+    RequestInterceptor requestInterceptor(){
         return requestTemplate -> {
             requestTemplate.query("apikey", apiKey);
         };
