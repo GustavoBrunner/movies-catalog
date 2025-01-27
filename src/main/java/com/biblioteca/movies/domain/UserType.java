@@ -2,7 +2,7 @@ package com.biblioteca.movies.domain;
 
 public enum UserType {
     DEVELOPER("developer",  true),
-    CLIENT("client", true);
+    CLIENT("client", false);
 
     private final String id;
     private final boolean hasAdminRights;

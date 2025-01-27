@@ -17,17 +17,20 @@ import com.biblioteca.movies.util.contracts.DtoMapper;
 public class UserServiceImpl implements UserService {
 
     private final UserRespository respository;
+
+    private final UserToUserDto mapper; 
     
     @Autowired
     public UserServiceImpl(UserRespository respository) {
         this.respository = respository;
+        mapper = new UserToUserDto();
     }
 
     @Override
     public UserViewDTO findById(Long id) {
         try{
             User entity = respository.findById(id).get(); 
-            return mapViewDto(entity, new UserToUserDto());
+            return mapper.mapToViewDto(entity);
 
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -38,49 +41,30 @@ public class UserServiceImpl implements UserService {
     public List<UserViewDTO> findAll() {
         List<User> users = respository.findAll();
         
-        return mapToListDto(users, new UserToUserDto());
+        return mapper.mapToListDto(users);
     }
 
     @Override
     public UserViewDTO create(UserDTO entity) {
-        User newEntity = mapEntity(entity, new UserToUserDto());
+        User newEntity = mapper.mapToEntity(entity);
         //todo: add the token and the time expiration
         respository.saveAndFlush(newEntity);
-        return mapViewDto(newEntity, new UserToUserDto());
+        return mapper.mapToViewDto(newEntity);
     }
 
     @Override
     public UserViewDTO update(UserDTO entity) {
-        User newEntity = mapEntity(entity, new UserToUserDto());
+        User newEntity = mapper.mapToEntity(entity);
         respository.saveAndFlush(newEntity);
-        return mapViewDto(newEntity, new UserToUserDto());
+        return mapper.mapToViewDto(newEntity);
     }
 
     @Override
     public UserViewDTO delete(Long id) {
         User dev = respository.findById(id).get();
         respository.delete(dev);
-        return mapViewDto(dev, new UserToUserDto());
+        return mapper.mapToViewDto(dev);
     }
 
 
-    @Override
-    public UserDTO mapDto(User entity, DtoMapper<User, UserDTO, UserViewDTO> mapper) {
-        return mapper.mapToDto(entity);
-    }
-
-    @Override
-    public User mapEntity(UserDTO dto, DtoMapper<User, UserDTO, UserViewDTO> mapper) {
-        return mapper.mapToEntity(dto);
-    }
-
-    @Override
-    public UserViewDTO mapViewDto(User entity, DtoMapper<User, UserDTO, UserViewDTO> mapper) {
-        return mapper.mapToViewDto(entity);
-    }
-
-    @Override
-    public List<UserViewDTO> mapToListDto(List<User> entities, DtoMapper<User, UserDTO, UserViewDTO> mapper) {
-        return mapper.mapToListDto(entities);
-    }
 }
